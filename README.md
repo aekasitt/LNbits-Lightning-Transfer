@@ -108,7 +108,7 @@ uv sync
   >  + certifi==2025.7.14
   >  + charset-normalizer==3.4.2
   >  + idna==3.10
-  >  + lnbits-tx-wos==0.0.1 (from file:///.../.../.../lnbits-lntx)
+  >  + lnbitstx==0.0.1 (from file:///.../.../.../lnbitstx)
   >  + requests==2.32.4
   >  + urllib3==2.5.0
   ```
@@ -157,13 +157,13 @@ uv sync --dev
   ```bash
   $ uv sync --dev
   > Resolved 13 packages in 8ms
-  >       Built lnbits-tx-wos @ file:///.../.../.../lnbits-lntx
+  >       Built lnbitstx@ file:///.../.../.../lnbitstx
   > Prepared 1 package in 349ms
   > Installed 13 packages in 20ms
   >  + certifi==2025.7.14
   >  + charset-normalizer==3.4.2
   >  + idna==3.10
-  >  + lnbits-tx-wos==0.0.1 (from file://.../.../.../lnbits-lntx)
+  >  + lnbitstx==0.0.1 (from file://.../.../.../lnbitstx)
   >  + mypy==1.17.1
   >  + mypy-extensions==1.1.0
   >  + pathspec==0.12.1
