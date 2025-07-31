@@ -20,16 +20,7 @@ class LNURLPayResponse(TypedDict):
     nostrPubkey: str
     pr: str
     tag: str
-    {
-      'callback': 'https://livingroomofsatoshi.com/api/v1/lnurl/payreq/8f6c1e60-2767-47e6-83c1-af4d8eac4634',
-      'maxSendable': 100000000000,
-      'minSendable': 1000,
-      'metadata': '[["text/plain","Pay to Wallet of Satoshi user: lyricalweather78"],["text/identifier","lyricalweather78@walletofsatoshi.com"]]',
-      'commentAllowed': 255,
-      'tag': 'payRequest',
-      'allowsNostr': True,
-      'nostrPubkey': 'be1d89794bf92de5dd64c1e60f6a2c70c140abac9932418fee30c5c637fe9479'
-    }
+
 
 class PayReqResponse(TypedDict):
     pr: str
@@ -72,16 +63,9 @@ def pay_invoice(bolt11_invoice) -> None:
     :return: nothing
     :rtype: None
     """
-    headers = {
-        "X-Api-Key": LNBITS_API_KEY,
-        "Content-type": "application/json"
-    }
-    data = {
-        "out": True,
-        "bolt11": bolt11_invoice
-    }
+    headers = {"X-Api-Key": LNBITS_API_KEY, "Content-type": "application/json"}
+    data = {"out": True, "bolt11": bolt11_invoice}
     response = post(LNBITS_API_URL, json=data, headers=headers)
-
     if response.status_code == 201:
         print("✅ Payment sent successfully!")
         print("Payment hash:", response.json().get("payment_hash"))
@@ -93,7 +77,9 @@ def pay_invoice(bolt11_invoice) -> None:
 
 if __name__ == "__main__":
     try:
-        print(f"⚡ Getting invoice for {AMOUNT_SATS} sats to {WOS_LIGHTNING_ADDRESS}...")
+        print(
+            f"⚡ Getting invoice for {AMOUNT_SATS} sats to {WOS_LIGHTNING_ADDRESS}..."
+        )
         invoice = get_lnurl_invoice(WOS_LIGHTNING_ADDRESS, AMOUNT_SATS)
         print("⚡ Paying invoice...")
         pay_invoice(invoice)
