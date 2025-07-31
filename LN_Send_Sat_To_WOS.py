@@ -1,31 +1,77 @@
 #!/usr/bin/env python3.9
-import requests
+from requests import Response, get, post
+from typing import TypedDict
 
 # === CONFIGURATION ===
 # You have to add Admin API key from LNbits
-LNBITS_API_KEY = "xxx" 
-LNBITS_API_URL = "xxx"
-WOS_LIGHTNING_ADDRESS = "lyricalweather78@walletofsatoshi.com"  # <- you can put LN address here
-AMOUNT_SATS = 90  # <- adjust amount here (satoshi)
+LNBITS_API_KEY: str = "xxx"
+LNBITS_API_URL: str = "xxx"
+WOS_LIGHTNING_ADDRESS: str = "lyricalweather78@walletofsatoshi.com"  # <- you can put LN address here
+AMOUNT_SATS: int = 90  # <- adjust amount here (satoshi)
 
-# === GET INVOICE FROM WALLET OF SATOSHI ===
-def get_lnurl_invoice(lightning_address, amount_sats):
+
+class LNURLPayResponse(TypedDict):
+    allowNostr: bool
+    callback: str
+    commitAllowed: int
+    maxSendable: int
+    metadata: str
+    minSendable: int
+    nostrPubkey: str
+    pr: str
+    tag: str
+    {
+      'callback': 'https://livingroomofsatoshi.com/api/v1/lnurl/payreq/8f6c1e60-2767-47e6-83c1-af4d8eac4634',
+      'maxSendable': 100000000000,
+      'minSendable': 1000,
+      'metadata': '[["text/plain","Pay to Wallet of Satoshi user: lyricalweather78"],["text/identifier","lyricalweather78@walletofsatoshi.com"]]',
+      'commentAllowed': 255,
+      'tag': 'payRequest',
+      'allowsNostr': True,
+      'nostrPubkey': 'be1d89794bf92de5dd64c1e60f6a2c70c140abac9932418fee30c5c637fe9479'
+    }
+
+class PayReqResponse(TypedDict):
+    pr: str
+
+
+def get_lnurl_invoice(lightning_address: str, amount_sats: int):
+    """
+    Get invoice from Wallet of Satoshi
+
+    ---
+    :param lightning_address:
+    :type lightning_address: str
+    :param amount_sats:
+    :type amount_sats:
+    :return:
+    :rtype:
+    """
     name, domain = lightning_address.split("@")
     lnurlp_url = f"https://{domain}/.well-known/lnurlp/{name}"
-
-    r1 = requests.get(lnurlp_url)
+    r1: Response = get(lnurlp_url)
     if r1.status_code != 200:
         raise Exception(f"Could not resolve lightning address: {r1.text}")
-    data = r1.json()
+    data: LNURLPayResponse = r1.json()
+    print(data)
     callback = data["callback"]
-
-    r2 = requests.get(callback, params={"amount": amount_sats * 1000})
+    r2: Response = get(callback, params={"amount": amount_sats * 1000})
     if r2.status_code != 200:
         raise Exception(f"Could not get invoice: {r2.text}")
-    return r2.json()["pr"]
+    pay_req: PayReqResponse = r2.json()
+    return pay_req["pr"]
 
-# === PAY WITH LNBITS ===
-def pay_invoice(bolt11_invoice):
+
+def pay_invoice(bolt11_invoice) -> None:
+    """
+    Pay with LNBits
+
+    ---
+    :param bolt11_invoice:
+    :type bolt11_invoice:
+    :return: nothing
+    :rtype: None
+    """
     headers = {
         "X-Api-Key": LNBITS_API_KEY,
         "Content-type": "application/json"
@@ -34,7 +80,7 @@ def pay_invoice(bolt11_invoice):
         "out": True,
         "bolt11": bolt11_invoice
     }
-    response = requests.post(LNBITS_API_URL, json=data, headers=headers)
+    response = post(LNBITS_API_URL, json=data, headers=headers)
 
     if response.status_code == 201:
         print("✅ Payment sent successfully!")
@@ -44,7 +90,7 @@ def pay_invoice(bolt11_invoice):
         print("Status code:", response.status_code)
         print("Response:", response.text)
 
-# === RUN ===
+
 if __name__ == "__main__":
     try:
         print(f"⚡ Getting invoice for {AMOUNT_SATS} sats to {WOS_LIGHTNING_ADDRESS}...")
