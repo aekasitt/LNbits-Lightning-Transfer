@@ -131,10 +131,28 @@ python LN_Send_Sat_To_WOS.py {{address}} {{amount}}
 ```
 
 <details>
-  <summary> Sample output for successful script </summary>
+  <summary> Sample output for successful script via `python` command </summary>
 
   ```bash
   $ python LN_Send_Sat_to_WOS.py lyricalweather78@walletofsatoshi.com 90
+  > ⚡ Getting invoice for 90 sats to lyricalweather78@walletofsatoshi.com...
+  > ⚡ Paying invoice...
+  > 🔥 Error: Invalid URL 'xxx': No scheme supplied. Perhaps you meant https://xxx?
+  ```
+</details>
+
+Or, similarly you can also use `lnbitstx` command on your terminal emulator installed
+after synchronization of this project's dependencies as well:
+
+```bash
+lnbitstx {{address}} {{amount}}
+```
+
+<details>
+  <summary> Sample output for successful script via `lnbitstx` command </summary>
+
+  ```bash
+  $ lnbitstx lyricalweather78@walletofsatoshi.com 90
   > ⚡ Getting invoice for 90 sats to lyricalweather78@walletofsatoshi.com...
   > ⚡ Paying invoice...
   > 🔥 Error: Invalid URL 'xxx': No scheme supplied. Perhaps you meant https://xxx?
