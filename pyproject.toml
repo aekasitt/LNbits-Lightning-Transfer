@@ -7,6 +7,7 @@ requires = [ 'hatchling' ]
 dev = [
   'mypy >=1.17.1',
   'ruff >=0.12.7',
+  'types-requests >=2.32.4.20250611',
 ]
 
 
