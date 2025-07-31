@@ -108,7 +108,7 @@ uv sync
   >  + certifi==2025.7.14
   >  + charset-normalizer==3.4.2
   >  + idna==3.10
-  >  + lnbits-tx-wos==0.0.1 (from file:///Users/mackasitt/workspaces/lnbits-lntx)
+  >  + lnbits-tx-wos==0.0.1 (from file:///.../.../.../lnbits-lntx)
   >  + requests==2.32.4
   >  + urllib3==2.5.0
   ```
@@ -142,3 +142,77 @@ python LN_Send_Sat_To_WOS.py
   > 🔥 Error: Invalid URL 'xxx': No scheme supplied. Perhaps you meant https://xxx?
   ```
 </details>
+
+## Contributions
+
+### Prerequisites
+
+Install development dependencies using `uv` command
+
+```bash
+uv sync --dev
+```
+
+<details>
+  <summary> Sample output of successfully installing development dependencies </summary>
+
+  ```bash
+  $ uv sync --dev
+  > Resolved 13 packages in 8ms
+  >       Built lnbits-tx-wos @ file:///.../.../.../lnbits-lntx
+  > Prepared 1 package in 349ms
+  > Installed 13 packages in 20ms
+  >  + certifi==2025.7.14
+  >  + charset-normalizer==3.4.2
+  >  + idna==3.10
+  >  + lnbits-tx-wos==0.0.1 (from file://.../.../.../lnbits-lntx)
+  >  + mypy==1.17.1
+  >  + mypy-extensions==1.1.0
+  >  + pathspec==0.12.1
+  >  + requests==2.32.4
+  >  + ruff==0.12.7
+  >  + tomli==2.2.1
+  >  + types-requests==2.32.4.20250611
+  >  + typing-extensions==4.14.1
+  >  + urllib3==2.5.0
+  ```
+</details>
+
+Run static type-checking using `mypy` with the following command:
+
+```bash
+mypy .
+```
+
+<details>
+  <summary> Sample output of successfully type-checking project </summary>
+
+  ```bash
+  $ mypy .
+  > Success: no issues found in 1 source file
+  ```
+</details>
+
+Run project-wide formatting using `ruff` with the following command:
+
+<details>
+  <summary> Sample output of successfully formatting project </summary>
+
+  ```bash
+  $ ruff format .
+  > 1 file reformatted
+  ```
+</details>
+
+Run linting / checking sourcecode for stylistic errors with the following `ruff` command:
+
+```bash
+ruff check .
+```
+
+<details>
+  <summary> Sample output of successfully linting project </summary>
+
+  ```bash
+  $ ruff check .
+  > 
