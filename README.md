@@ -215,4 +215,6 @@ ruff check .
 
   ```bash
   $ ruff check .
-  > 
+  > All checks passed!
+  ```
+</details>
