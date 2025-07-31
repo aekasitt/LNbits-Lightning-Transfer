@@ -2,12 +2,6 @@
 
 ## Script for Lightning transfer to Lightning Address provided by Wallet of Satoshi
 
-and then you just input 4 parameter at the top.
-
-and run it baby. (python LN_Send_Sat_To_WOS.py)
-
-<img width="993" height="523" alt="image" src="https://github.com/user-attachments/assets/3e06cc1e-5ba7-4236-838a-5cbc8dfbdc86" />
-
 ### Prerequisites
 
 * [git](https://git-scm.com/) - --fast-version-control
@@ -87,7 +81,7 @@ open-sourced registry defined under `pyproject.toml` file.
 
   ```bash
   git clone git@github.com:ta007403/LNbits-Lightning-Transfer.git
-  cd etiquette
+  cd LNbits-Lightning-Transfer
   uv venv --python 3.9.6
   source .venv/bin/activate
   uv sync --dev
@@ -117,5 +111,34 @@ uv sync
   >  + lnbits-tx-wos==0.0.1 (from file:///Users/mackasitt/workspaces/lnbits-lntx)
   >  + requests==2.32.4
   >  + urllib3==2.5.0
+  ```
+</details>
+
+Edit the given script by changing the following parameters:
+```python
+LNBITS_API_KEY = "xxx" 
+LNBITS_API_URL = "xxx"
+WOS_LIGHTNING_ADDRESS = "lyricalweather78@walletofsatoshi.com"  # <- you can put LN address here
+AMOUNT_SATS = 90  # <- adjust amount here (satoshi)
+```
+
+As seen on attached image here:
+
+![image](https://github.com/user-attachments/assets/3e06cc1e-5ba7-4236-838a-5cbc8dfbdc86 =993x523)
+
+Then run the given script by targeting script-file with `python` command:
+
+```bash
+python LN_Send_Sat_To_WOS.py
+```
+
+<details>
+  <summary> Sample output for successful script </summary>
+
+  ```bash
+  $ python LN_Send_Sat_to_WOS.py
+  > ⚡ Getting invoice for 90 sats to lyricalweather78@walletofsatoshi.com...
+  > ⚡ Paying invoice...
+  > 🔥 Error: Invalid URL 'xxx': No scheme supplied. Perhaps you meant https://xxx?
   ```
 </details>
