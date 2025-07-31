@@ -22,5 +22,9 @@ requires-python = '>=3.9'
 version = '0.0.1'
 
 
+[project.scripts]
+lnbitstx = 'LN_Send_Sat_To_WOS:main'
+
+
 [tool.hatch.build.targets.wheel]
 packages = [ 'LN_Send_Sat_to_WOS.py' ]

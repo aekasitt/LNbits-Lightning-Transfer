@@ -95,7 +95,7 @@ wheels = [
 ]
 
 [[package]]
-name = "lnbits-tx-wos"
+name = "lnbitstx"
 version = "0.0.1"
 source = { editable = "." }
 dependencies = [

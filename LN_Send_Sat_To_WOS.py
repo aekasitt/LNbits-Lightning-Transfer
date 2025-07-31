@@ -74,7 +74,7 @@ def pay_invoice(bolt11_invoice) -> None:
         print("Response:", response.text)
 
 
-if __name__ == "__main__":
+def main() -> None:
     parser: ArgumentParser = ArgumentParser()
     parser.add_argument("address", help="Lightning Address provided by Wallet of Satoshi", type=str)
     parser.add_argument("amount", help="Amount of SATs to be sent to given address", type=int)
@@ -90,3 +90,7 @@ if __name__ == "__main__":
         pay_invoice(invoice)
     except Exception as e:
         print("🔥 Error:", e)
+
+
+if __name__ == "__main__":
+    main()
