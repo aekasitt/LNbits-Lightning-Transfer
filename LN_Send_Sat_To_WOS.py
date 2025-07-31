@@ -1,4 +1,5 @@
 #!/usr/bin/env python3.9
+from argparse import ArgumentParser, Namespace
 from requests import Response, get, post
 from typing import TypedDict
 
@@ -6,8 +7,6 @@ from typing import TypedDict
 # You have to add Admin API key from LNbits
 LNBITS_API_KEY: str = "xxx"
 LNBITS_API_URL: str = "xxx"
-WOS_LIGHTNING_ADDRESS: str = "lyricalweather78@walletofsatoshi.com"  # <- you can put LN address here
-AMOUNT_SATS: int = 90  # <- adjust amount here (satoshi)
 
 
 class LNURLPayResponse(TypedDict):
@@ -76,11 +75,17 @@ def pay_invoice(bolt11_invoice) -> None:
 
 
 if __name__ == "__main__":
+    parser: ArgumentParser = ArgumentParser()
+    parser.add_argument("address", help="Lightning Address provided by Wallet of Satoshi", type=str)
+    parser.add_argument("amount", help="Amount of SATs to be sent to given address", type=int)
+    args: Namespace = parser.parse_args()
     try:
+        address: str = args.address
+        amount: int = args.amount
         print(
-            f"⚡ Getting invoice for {AMOUNT_SATS} sats to {WOS_LIGHTNING_ADDRESS}..."
+            f"⚡ Getting invoice for {amount} sats to {address}..."
         )
-        invoice = get_lnurl_invoice(WOS_LIGHTNING_ADDRESS, AMOUNT_SATS)
+        invoice = get_lnurl_invoice(address, amount)
         print("⚡ Paying invoice...")
         pay_invoice(invoice)
     except Exception as e:

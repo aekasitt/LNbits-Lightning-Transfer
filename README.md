@@ -118,8 +118,6 @@ Edit the given script by changing the following parameters:
 ```python
 LNBITS_API_KEY = "xxx" 
 LNBITS_API_URL = "xxx"
-WOS_LIGHTNING_ADDRESS = "lyricalweather78@walletofsatoshi.com"  # <- you can put LN address here
-AMOUNT_SATS = 90  # <- adjust amount here (satoshi)
 ```
 
 As seen on attached image here:
@@ -129,14 +127,14 @@ As seen on attached image here:
 Then run the given script by targeting script-file with `python` command:
 
 ```bash
-python LN_Send_Sat_To_WOS.py
+python LN_Send_Sat_To_WOS.py {{address}} {{amount}}
 ```
 
 <details>
   <summary> Sample output for successful script </summary>
 
   ```bash
-  $ python LN_Send_Sat_to_WOS.py
+  $ python LN_Send_Sat_to_WOS.py lyricalweather78@walletofsatoshi.com 90
   > ⚡ Getting invoice for 90 sats to lyricalweather78@walletofsatoshi.com...
   > ⚡ Paying invoice...
   > 🔥 Error: Invalid URL 'xxx': No scheme supplied. Perhaps you meant https://xxx?
