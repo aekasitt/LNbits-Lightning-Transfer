@@ -1,0 +1,18 @@
+[build-system]
+build-backend = 'hatchling.build'
+requires = [ 'hatchling' ]
+
+
+[project]
+dependencies = [
+  'requests >=2.32.4',
+]
+description = 'Script for transfering satoshi to your lightning address (Wallet Of Satoshi edition)'
+name = 'lnbits-tx-wos'
+readme = 'README.md'
+requires-python = '>=3.9'
+version = '0.0.1'
+
+
+[tool.hatch.build.targets.wheel]
+packages = [ 'LN_Send_Sat_to_WOS.py' ]
