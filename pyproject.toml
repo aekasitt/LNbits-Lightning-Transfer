@@ -3,6 +3,13 @@ build-backend = 'hatchling.build'
 requires = [ 'hatchling' ]
 
 
+[dependency-groups]
+dev = [
+  'mypy >=1.17.1',
+  'ruff >=0.12.7',
+]
+
+
 [project]
 dependencies = [
   'requests >=2.32.4',
