@@ -211,6 +211,10 @@ mypy .
 
 Run project-wide formatting using `ruff` with the following command:
 
+```bash
+ruff format .
+```
+
 <details>
   <summary> Sample output of successfully formatting project </summary>
 
