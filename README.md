@@ -1,8 +1,6 @@
-for window user, you have to install 
+# LNbits Transfer to Wallet of Satoshi
 
-pip install requests
-
-cd to your python directory
+## Script for Lightning transfer to Lightning Address provided by Wallet of Satoshi
 
 and then you just input 4 parameter at the top.
 
@@ -93,5 +91,31 @@ open-sourced registry defined under `pyproject.toml` file.
   uv venv --python 3.9.6
   source .venv/bin/activate
   uv sync --dev
+  ```
+</details>
+
+### Getting started
+
+Once you have virtual environment set up, install project dependencies with the following
+command:
+
+```bash
+uv sync
+```
+
+<details>
+  <summary> Sample output of successful dependency installation </summary>
+
+  ```bash
+  $ uv sync
+  > Resolved 6 packages in 2ms
+  > Prepared 1 package in 146ms
+  > Installed 6 packages in 6ms
+  >  + certifi==2025.7.14
+  >  + charset-normalizer==3.4.2
+  >  + idna==3.10
+  >  + lnbits-tx-wos==0.0.1 (from file:///Users/mackasitt/workspaces/lnbits-lntx)
+  >  + requests==2.32.4
+  >  + urllib3==2.5.0
   ```
 </details>
